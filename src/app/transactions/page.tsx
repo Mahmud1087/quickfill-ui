@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { recentTransactions } from '@/data';
+import { transactionsData } from '@/data';
 
 const Transactions = () => {
   const [tab, setTab] = useState('Purchase');
@@ -50,8 +50,8 @@ const Transactions = () => {
         </aside>
       </div>
 
-      <section className='p-3 bg-white rounded-xl'>
-        <div className='flex items-center justify-between'>
+      <section className='bg-white rounded-xl'>
+        <div className='p-4 flex items-center justify-between'>
           <label
             htmlFor='search'
             className='w-64 px-2 py-1 flex gap-2 items-center border rounded-md'
@@ -70,28 +70,40 @@ const Transactions = () => {
           <Table>
             <TableHeader className='bg-[#68746f0f] text-xs'>
               <TableRow>
-                <TableHead className='pl-6'>DATE</TableHead>
-                <TableHead>TRANSACTION TYPE</TableHead>
-                <TableHead>COMPANY</TableHead>
+                <TableHead className='pl-4'>DATE</TableHead>
+                <TableHead>TRANSACTION ID</TableHead>
+                <TableHead>DRIVER NAME</TableHead>
+                <TableHead className=''>PRODUCT</TableHead>
+                <TableHead className=''>RATE</TableHead>
+                <TableHead className=''>QTY</TableHead>
                 <TableHead className=''>AMOUNT</TableHead>
                 <TableHead className='text-right pr-6'>STATUS</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {recentTransactions.map((transaction, i) => {
+              {transactionsData.map((transaction, i) => {
                 return (
                   <TableRow key={i} className=''>
-                    <TableCell className='text-[#6B7772] text-[13px] pl-6 py-3'>
+                    <TableCell className='text-[#6B7772] text-[13px] pl-4 py-3'>
                       {transaction.date}
                     </TableCell>
                     <TableCell className='font-medium text-[13px]'>
-                      {transaction.type}
+                      {transaction.transactionId}
                     </TableCell>
                     <TableCell className='text-[#6B7772] text-[13px]'>
-                      {transaction.company}
+                      {transaction.driverName}
                     </TableCell>
                     <TableCell className='font-medium text-[13px]'>
-                      &#8358;{transaction.amount}
+                      {transaction.product}
+                    </TableCell>
+                    <TableCell className='font-medium text-[13px]'>
+                      {transaction.rate}
+                    </TableCell>
+                    <TableCell className='font-medium text-[13px]'>
+                      {transaction.qty}
+                    </TableCell>
+                    <TableCell className='font-medium text-[13px]'>
+                      {transaction.amount}
                     </TableCell>
                     <TableCell className={cn('text-right pr-6 text-[13px]')}>
                       <span
